@@ -18,6 +18,10 @@ var FONT_POSITION_X = 120;
 var FONT_POSITION_TITLE_Y = 40;
 var FONT_POSITION_SUBTITLE_Y = 70;
 
+//Player settings
+var playerName = 'Вы';
+var playerColor = 'rgba(255, 0, 0, 1)';
+
 var renderCloud = function(ctx, x, y, color) {
   ctx.fillStyle = color;
   ctx.fillRect(x, y, CLOUD_WIDTH, CLOUD_HEIGHT);
@@ -32,4 +36,12 @@ var getMaxElement = function(arr) {
     }
   }
   return maxElement;
+};
+
+var statisticColor = function (ctx, players) {
+  if (players === playerName) {
+    ctx.fillStyle = playerColor;
+  } else {
+    ctx.fillStyle = 'rgba(0, 0, 255, ' + Math.random() + ')';
+  }
 };
