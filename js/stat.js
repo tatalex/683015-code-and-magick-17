@@ -17,3 +17,19 @@ var FONT_CHARACTERISTIC = "16pt PT Mono";
 var FONT_POSITION_X = 120;
 var FONT_POSITION_TITLE_Y = 40;
 var FONT_POSITION_SUBTITLE_Y = 70;
+
+var renderCloud = function(ctx, x, y, color) {
+  ctx.fillStyle = color;
+  ctx.fillRect(x, y, CLOUD_WIDTH, CLOUD_HEIGHT);
+};
+
+var getMaxElement = function(arr) {
+  var maxElement = arr[0];
+
+  for (var i = 0; i < arr.length; i++) {
+    if (arr[i] > maxElement) {
+      maxElement = arr[i];
+    }
+  }
+  return maxElement;
+};
