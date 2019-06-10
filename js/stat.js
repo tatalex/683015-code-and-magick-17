@@ -49,19 +49,19 @@ var getMaxElement = function (arr) {
 };
 
 var diagramText = function (ctx, text, positionX, positionY) {
-    ctx.fillStyle = BLACK_COLOR;
-    ctx.font = FONT_CHARACTERISTIC;
-    ctx.fillText(text, positionX, positionY);
-  };
-
-var diagramColor = function (ctx, players) {
-  players === PLAYER_NAME ? ctx.fillStyle = PLAYER_COLOR : ctx.fillStyle = 'rgba(0, 0, 255, ' + Math.random() + ')';
+  ctx.fillStyle = BLACK_COLOR;
+  ctx.font = FONT_CHARACTERISTIC;
+  ctx.fillText(text, positionX, positionY);
 };
 
- var renderRectangle = function (ctx, color, positionX, positionY, width, height) {
-    ctx.fillStyle = color;
-    ctx.fillRect(positionX, positionY, width, height);
-  };
+var diagramColor = function (ctx, players) {
+  ctx.fillStyle = players === PLAYER_NAME ? ctx.fillStyle = PLAYER_COLOR : ctx.fillStyle = 'rgba(0, 0, 255, ' + Math.random() + ')';
+};
+
+var renderRectangle = function (ctx, color, positionX, positionY, width, height) {
+  ctx.fillStyle = color;
+  ctx.fillRect(positionX, positionY, width, height);
+};
 
 window.renderStatistics = function (ctx, players, times) {
   var maxTime = getMaxElement(times);
