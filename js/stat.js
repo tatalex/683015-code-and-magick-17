@@ -19,8 +19,8 @@ var FONT_POSITION_TITLE_Y = 40;
 var FONT_POSITION_SUBTITLE_Y = 70;
 
 // Player settings
-var PLAYER_NAME = 'Вы';
-var PLAYER_COLOR = 'rgba(255, 0, 0, 1)';
+var YOUR_NAME = 'Вы';
+var YOUR_COLOR = 'rgba(255, 0, 0, 1)';
 
 // Diagram settings
 var FONT_GAP = 50;
@@ -48,38 +48,41 @@ var getMaxElement = function (arr) {
   return maxElement;
 };
 
-var diagramText = function (ctx, text, positionX, positionY) {
+var renderDiagramText = function (ctx, text, positionX, positionY) {
   ctx.fillStyle = BLACK_COLOR;
   ctx.font = FONT_CHARACTERISTIC;
   ctx.fillText(text, positionX, positionY);
 };
 
-var diagramColor = function (ctx, players) {
-  ctx.fillStyle = players === PLAYER_NAME ? ctx.fillStyle = PLAYER_COLOR : ctx.fillStyle = 'rgba(0, 0, 255, ' + Math.random() + ')';
+var renderDiagramColor = function (ctx, names) {
+  ctx.fillStyle = names === YOUR_NAME ? YOUR_COLOR : 'rgba(0, 0, 255, ' + Math.random() + ')';
 };
 
-var renderRectangle = function (ctx, color, positionX, positionY, width, height) {
+var renderDiagramRectangle = function (ctx, color, positionX, positionY, width, height) {
   ctx.fillStyle = color;
   ctx.fillRect(positionX, positionY, width, height);
 };
 
-window.renderStatistics = function (ctx, players, times) {
+window.renderStatistics = function (ctx, names, times) {
   var maxTime = getMaxElement(times);
   // Clouds
   renderCloud(ctx, CLOUD_X + GAP, CLOUD_Y + GAP, SHADOW_COLOR);
   renderCloud(ctx, CLOUD_X, CLOUD_Y, WHITE_COLOR);
 
   // Diagram text
-  diagramText(ctx, 'Ура вы победили!', FONT_POSITION_X, FONT_POSITION_TITLE_Y);
-  diagramText(ctx, 'Список результатов:', FONT_POSITION_X, FONT_POSITION_SUBTITLE_Y);
+  renderDiagramText(ctx, 'Ура вы победили!', FONT_POSITION_X, FONT_POSITION_TITLE_Y);
+  renderDiagramText(ctx, 'Список результатов:', FONT_POSITION_X, FONT_POSITION_SUBTITLE_Y);
 
   // Diagram bar
-  for (var i = 0; i < players.length; i++) {
+  for (var i = 0; i < names.length; i++) {
+    var barX = diagramPositionX + diagramBarWidth * i;
+    var barY = diagramPositionY - (diagramHeight * times[i]) / maxTime;
+
     // Diagram rectangles
-    renderRectangle(ctx, diagramColor(ctx, players[i]), diagramPositionX + diagramBarWidth * i, diagramPositionY - (diagramHeight * times[i]) / maxTime, DIAGRAM_BAR_WIDTH, (diagramHeight * times[i]) / maxTime);
+    renderDiagramRectangle(ctx, renderDiagramColor(ctx, names[i]), barX, barY, DIAGRAM_BAR_WIDTH, (diagramHeight * times[i]) / maxTime);
 
     // Diagram names and times
-    diagramText(ctx, players[i], diagramPositionX + diagramBarWidth * i, CLOUD_HEIGHT + CLOUD_Y - 2 * GAP);
-    diagramText(ctx, Math.round(times[i]), diagramPositionX + diagramBarWidth * i, diagramPositionY - (diagramHeight * times[i]) / maxTime - GAP);
+    renderDiagramText(ctx, names[i], barX, CLOUD_HEIGHT + CLOUD_Y - 2 * GAP);
+    renderDiagramText(ctx, Math.round(times[i]), barX, barY - GAP);
   }
 };
