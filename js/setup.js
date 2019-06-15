@@ -11,6 +11,10 @@ var SURNAMES = ['да Марья', 'Верон', 'Мирабелла', 'Валь
 var COAT_COLORS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
 var EYES_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
 
+var similarListElement = document.querySelector('.setup-similar-list');
+var similarWizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item')
+var fragment = document.createDocumentFragment();
+
 // creates characters
 var getRandomInRange = function (min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -34,3 +38,13 @@ var createCharacters = function (count) {
 };
 
 var characterOfWizards = createCharacters(CHARACTER_AMOUNT);
+
+// renders character
+var renderCharacter = function (wizard) {
+  var characterWizard = similarWizardTemplate.cloneNode(true);
+  characterWizard.querySelector('.setup-similar-label').textContent = wizard.name;
+  characterWizard.querySelector('.wizard-coat').style.fill = wizard.coatColor;
+  characterWizard.querySelector('.wizard-eyes').style.fill = wizard.eyesColor;
+
+  return characterWizard;
+};
