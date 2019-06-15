@@ -48,3 +48,14 @@ var renderCharacter = function (wizard) {
 
   return characterWizard;
 };
+
+// adds characters to the table
+var addWizards = function () {
+  for (var i = 0; i < characterOfWizards.length; i++) {
+    fragment.appendChild(renderCharacter(characterOfWizards[i]));
+  }
+
+  similarListElement.appendChild(fragment);
+};
+
+addWizards();
