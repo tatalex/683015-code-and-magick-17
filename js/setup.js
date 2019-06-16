@@ -6,6 +6,8 @@ var SURNAMES = ['да Марья', 'Верон', 'Мирабелла', 'Валь
 var COAT_COLORS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
 var EYES_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
 
+var similarListElement = document.querySelector('.setup-similar-list');
+
 // creates characters
 var getRandomInRange = function (min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -41,18 +43,16 @@ var renderWizard = function (wizard) {
 
 // adds characters to the table
 var renderWizards = function () {
-  var similarListElement = document.querySelector('.setup-similar-list');
   var fragment = document.createDocumentFragment();
   var characterOfWizards = createCharacters(CHARACTERS_AMOUNT);
 
   for (var i = 0; i < characterOfWizards.length; i++) {
     fragment.appendChild(renderWizard(characterOfWizards[i]));
   }
-
-  similarListElement.appendChild(fragment);
+  return fragment;
 };
 
-renderWizards();
+similarListElement.appendChild(renderWizards());
 
 
 // removes classes .hidden
