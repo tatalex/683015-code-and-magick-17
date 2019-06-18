@@ -18,6 +18,13 @@ var setupClose = setup.querySelector('.setup-close');
 var form = document.querySelector('.setup-wizard-form');
 var userName = form.querySelector('.setup-user-name');
 
+var wizardCoat = setup.querySelector('.wizard-coat');
+var wizardEyes = setup.querySelector('.wizard-eyes');
+var inputCoat = setup.querySelector('input[name="coat-color"]');
+var inputEyes = setup.querySelector('input[name="eyes-color"]');
+var setupFireball = setup.querySelector('.setup-fireball-wrap');
+var inputFireball = setupFireball.querySelector('input[name="fireball-color"]');
+
 var similarListElement = document.querySelector('.setup-similar-list');
 
 // creates characters
@@ -107,4 +114,31 @@ setupClose.addEventListener('keydown', function(evt) {
   if (evt.keyCode === ENTER_KEYCODE) {
     closePopup();
   }
+});
+
+// changes colors
+var changeColorFill = function (colorArray, element, input) {
+  var elementColor = getRandomElementFromArray(colorArray);
+
+  element.style.fill = elementColor;
+  input.value = elementColor;
+}
+
+var changeColorBackground = function (colorArray, element, input) {
+  var elementColor = getRandomElementFromArray(colorArray);
+
+  element.style.backgroundColor = elementColor;
+  input.value = elementColor;
+}
+
+wizardCoat.addEventListener('click', function () {
+  changeColorFill (COAT_COLORS, wizardCoat, inputCoat);
+});
+
+wizardEyes.addEventListener('click', function () {
+  changeColorFill (EYES_COLORS, wizardEyes, inputEyes);
+});
+
+setupFireball.addEventListener('click', function () {
+  changeColorBackground (FIREBALL_COLORS, setupFireball, inputFireball);
 });
