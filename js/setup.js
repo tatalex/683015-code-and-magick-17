@@ -74,7 +74,6 @@ var renderWizards = function () {
 similarListElement.appendChild(renderWizards());
 
 // removes classes .hidden
-document.querySelector('.setup').classList.remove('hidden');
 document.querySelector('.setup-similar').classList.remove('hidden');
 
 
