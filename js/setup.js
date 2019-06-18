@@ -83,7 +83,6 @@ var onPopupEscPress = function (evt) {
   if (evt.keyCode === ESC_KEYCODE && userName !== document.activeElement) {
     closePopup();
   }
-  return evt;
 };
 
 var openPopup = function () {
@@ -117,14 +116,14 @@ setupClose.addEventListener('keydown', function (evt) {
 });
 
 // changes colors
-var changeColorFill = function (colorArray, element, input) {
+var onElementFillClick = function (colorArray, element, input) {
   var elementColor = getRandomElementFromArray(colorArray);
 
   element.style.fill = elementColor;
   input.value = elementColor;
 };
 
-var changeColorBackground = function (colorArray, element, input) {
+var onElementBackgroundClick = function (colorArray, element, input) {
   var elementColor = getRandomElementFromArray(colorArray);
 
   element.style.backgroundColor = elementColor;
@@ -132,13 +131,13 @@ var changeColorBackground = function (colorArray, element, input) {
 };
 
 wizardCoat.addEventListener('click', function () {
-  changeColorFill(COAT_COLORS, wizardCoat, inputCoat);
+  onElementFillClick(COAT_COLORS, wizardCoat, inputCoat);
 });
 
 wizardEyes.addEventListener('click', function () {
-  changeColorFill(EYES_COLORS, wizardEyes, inputEyes);
+  onElementFillClick(EYES_COLORS, wizardEyes, inputEyes);
 });
 
 setupFireball.addEventListener('click', function () {
-  changeColorBackground(FIREBALL_COLORS, setupFireball, inputFireball);
+  onElementBackgroundClick(FIREBALL_COLORS, setupFireball, inputFireball);
 });
