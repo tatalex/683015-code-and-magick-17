@@ -79,38 +79,38 @@ document.querySelector('.setup-similar').classList.remove('hidden');
 
 
 // configures opening and closing of the settings window
-var onPopupEscPress = function(evt) {
+var onPopupEscPress = function (evt) {
   if (evt.keyCode === ESC_KEYCODE && userName !== document.activeElement) {
     closePopup();
   }
   return evt;
 };
 
-var openPopup = function() {
+var openPopup = function () {
   setup.classList.remove('hidden');
   document.addEventListener('keydown', onPopupEscPress);
 };
 
-var closePopup = function() {
+var closePopup = function () {
   setup.classList.add('hidden');
   document.removeEventListener('keydown', onPopupEscPress);
 };
 
-setupOpen.addEventListener('click', function() {
+setupOpen.addEventListener('click', function () {
   openPopup();
 });
 
-setupOpen.addEventListener('keydown', function(evt) {
+setupOpen.addEventListener('keydown', function (evt) {
   if (evt.keyCode === ENTER_KEYCODE) {
     openPopup();
   }
 });
 
-setupClose.addEventListener('click', function() {
+setupClose.addEventListener('click', function () {
   closePopup();
 });
 
-setupClose.addEventListener('keydown', function(evt) {
+setupClose.addEventListener('keydown', function (evt) {
   if (evt.keyCode === ENTER_KEYCODE) {
     closePopup();
   }
@@ -122,23 +122,23 @@ var changeColorFill = function (colorArray, element, input) {
 
   element.style.fill = elementColor;
   input.value = elementColor;
-}
+};
 
 var changeColorBackground = function (colorArray, element, input) {
   var elementColor = getRandomElementFromArray(colorArray);
 
   element.style.backgroundColor = elementColor;
   input.value = elementColor;
-}
+};
 
 wizardCoat.addEventListener('click', function () {
-  changeColorFill (COAT_COLORS, wizardCoat, inputCoat);
+  changeColorFill(COAT_COLORS, wizardCoat, inputCoat);
 });
 
 wizardEyes.addEventListener('click', function () {
-  changeColorFill (EYES_COLORS, wizardEyes, inputEyes);
+  changeColorFill(EYES_COLORS, wizardEyes, inputEyes);
 });
 
 setupFireball.addEventListener('click', function () {
-  changeColorBackground (FIREBALL_COLORS, setupFireball, inputFireball);
+  changeColorBackground(FIREBALL_COLORS, setupFireball, inputFireball);
 });
